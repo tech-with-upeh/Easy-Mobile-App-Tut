@@ -1,99 +1,71 @@
+import 'package:easyapp/dashboard/cart.dart';
+import 'package:easyapp/dashboard/dashhome.dart';
+import 'package:easyapp/dashboard/more.dart';
+import 'package:easyapp/dashboard/orders.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:iconify_flutter/iconify_flutter.dart'; // For Iconify Widget
 import 'package:iconify_flutter/icons/ph.dart';
+import 'package:iconify_flutter/icons/cil.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+class DashBoard extends StatefulWidget {
+  const DashBoard({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<DashBoard> createState() => _DashBoardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
-    List<String> horizontal_slider = [
-      "Fruits",
-      "Fast-Food",
-      "Vegetables",
-      "Dairy",
-    ];
-
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(2, 6, 22, 1),
-      body: Column(
-        children: [
-          SizedBox(
-            height: height * 0.9,
-            width: double.infinity,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24, top: 48),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Daily\n"
-                          "Grocery Food",
-                          style: GoogleFonts.lato(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        //Icon(Icons.search_rounded),
-                        Iconify(Ph.magnifying_glass),
-                      ],
-                    ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 48),
-                          child: SizedBox(
-                            height: 48,
-                            width: double.infinity,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: horizontal_slider.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  height: 48,
-                                  width: 100,
-                                  margin: EdgeInsets.symmetric(horizontal: 4),
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(2, 6, 22, 1),
-                                    borderRadius: BorderRadius.circular(24),
-                                  ),
-                                  child: Center(
-                                    child: Text(horizontal_slider[index]),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+    return PersistentTabView(
+      tabs: [
+        PersistentTabConfig(
+          screen: DashHome(),
+          item: ItemConfig(
+            icon: Iconify(Ph.house_fill, color: Colors.white),
+            inactiveIcon: Iconify(Ph.house_thin, color: Colors.white70),
+            title: "Home",
+            activeForegroundColor: Colors.white,
           ),
-        ],
+        ),
+
+        PersistentTabConfig(
+          screen: OrdersPage(),
+          item: ItemConfig(
+            icon: Iconify(Ph.storefront_fill, color: Colors.white),
+            title: "Order",
+            inactiveIcon: Iconify(Ph.storefront_thin, color: Colors.white70),
+            activeForegroundColor: Colors.white,
+          ),
+        ),
+
+        PersistentTabConfig(
+          screen: CartPage(),
+          item: ItemConfig(
+            icon: Iconify(Ph.shopping_cart_fill, color: Colors.white),
+            title: "Order",
+            inactiveIcon: Iconify(Ph.shopping_cart_thin, color: Colors.white70),
+            activeForegroundColor: Colors.white,
+          ),
+        ),
+
+        PersistentTabConfig(
+          screen: MorePage(),
+          item: ItemConfig(
+            icon: Iconify(Ph.squares_four_fill, color: Colors.white),
+            title: "Order",
+            inactiveIcon: Iconify(Ph.squares_four_thin, color: Colors.white70),
+            activeForegroundColor: Colors.white,
+          ),
+        ),
+      ],
+      navBarBuilder: (navBarConfig) => Style1BottomNavBar(
+        navBarConfig: navBarConfig,
+        navBarDecoration: NavBarDecoration(
+          color: Color.fromRGBO(2, 6, 22, 1),
+          padding: EdgeInsets.only(bottom: 22),
+        ),
       ),
     );
   }
