@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:iconify_flutter/iconify_flutter.dart'; // For Iconify Widget
 import 'package:iconify_flutter/icons/ph.dart';
-import 'package:iconify_flutter/icons/cil.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -44,7 +43,7 @@ class _DashBoardState extends State<DashBoard> {
           screen: CartPage(),
           item: ItemConfig(
             icon: Iconify(Ph.shopping_cart_fill, color: Colors.white),
-            title: "Order",
+            title: "Cart",
             inactiveIcon: Iconify(Ph.shopping_cart_thin, color: Colors.white70),
             activeForegroundColor: Colors.white,
           ),
@@ -54,7 +53,7 @@ class _DashBoardState extends State<DashBoard> {
           screen: MorePage(),
           item: ItemConfig(
             icon: Iconify(Ph.squares_four_fill, color: Colors.white),
-            title: "Order",
+            title: "More",
             inactiveIcon: Iconify(Ph.squares_four_thin, color: Colors.white70),
             activeForegroundColor: Colors.white,
           ),
