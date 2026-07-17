@@ -4,6 +4,7 @@ class CartItem {
   final double price;
   final int calories;
   final String imageUrl;
+  int count;
 
   CartItem({
     required this.id,
@@ -11,5 +12,6 @@ class CartItem {
     required this.price,
     required this.calories,
     required this.imageUrl,
+    required this.count,
   });
 }

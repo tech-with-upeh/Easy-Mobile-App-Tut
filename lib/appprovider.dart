@@ -23,7 +23,22 @@ class CartProvider with ChangeNotifier {
   List<CartItem> get cartItems => _cartItems;
 
   void addCartItem(CartItem item) {
-    _cartItems.add(item);
+    var exists = cartItems.firstWhere(
+      (cartitem) => item.id == cartitem.id,
+      orElse: () => CartItem(
+        id: "-1",
+        name: "null",
+        price: 0,
+        calories: 0,
+        imageUrl: "null",
+        count: 0,
+      ),
+    );
+    if (exists.id == "-1") {
+      _cartItems.add(item);
+    } else {
+      exists.count += 1;
+    }
     notifyListeners();
   }
 

@@ -30,6 +30,7 @@ class _DashHomeState extends State<DashHome> {
         price: 15.0,
         calories: 80,
         imageUrl: 'assets/pineapple.png',
+        count: 0,
       ),
       CartItem(
         id: '2',
@@ -37,6 +38,7 @@ class _DashHomeState extends State<DashHome> {
         price: 10.0,
         calories: 59,
         imageUrl: 'assets/banana.png',
+        count: 0,
       ),
       CartItem(
         id: '3',
@@ -44,6 +46,7 @@ class _DashHomeState extends State<DashHome> {
         price: 7.0,
         calories: 35,
         imageUrl: 'assets/tangerine.png',
+        count: 0,
       ),
       CartItem(
         id: '4',
@@ -51,6 +54,7 @@ class _DashHomeState extends State<DashHome> {
         price: 21.0,
         calories: 25,
         imageUrl: 'assets/pawpaw.png',
+        count: 0,
       ),
       CartItem(
         id: '5',
@@ -58,6 +62,7 @@ class _DashHomeState extends State<DashHome> {
         price: 15.0,
         calories: 80,
         imageUrl: 'assets/pineapple.png',
+        count: 0,
       ),
       CartItem(
         id: '6',
@@ -65,6 +70,7 @@ class _DashHomeState extends State<DashHome> {
         price: 10.0,
         calories: 59,
         imageUrl: 'assets/banana.png',
+        count: 0,
       ),
       CartItem(
         id: '7',
@@ -72,6 +78,7 @@ class _DashHomeState extends State<DashHome> {
         price: 7.0,
         calories: 35,
         imageUrl: 'assets/tangerine.png',
+        count: 0,
       ),
       CartItem(
         id: '8',
@@ -79,6 +86,7 @@ class _DashHomeState extends State<DashHome> {
         price: 21.0,
         calories: 25,
         imageUrl: 'assets/pawpaw.png',
+        count: 0,
       ),
       CartItem(
         id: '9',
@@ -86,6 +94,7 @@ class _DashHomeState extends State<DashHome> {
         price: 15.0,
         calories: 80,
         imageUrl: 'assets/pineapple.png',
+        count: 0,
       ),
       CartItem(
         id: '10',
@@ -93,6 +102,7 @@ class _DashHomeState extends State<DashHome> {
         price: 10.0,
         calories: 59,
         imageUrl: 'assets/banana.png',
+        count: 0,
       ),
       CartItem(
         id: '11',
@@ -100,6 +110,7 @@ class _DashHomeState extends State<DashHome> {
         price: 7.0,
         calories: 35,
         imageUrl: 'assets/tangerine.png',
+        count: 0,
       ),
       CartItem(
         id: '12',
@@ -107,6 +118,7 @@ class _DashHomeState extends State<DashHome> {
         price: 21.0,
         calories: 25,
         imageUrl: 'assets/pawpaw.png',
+        count: 0,
       ),
     ];
 
@@ -361,9 +373,6 @@ class _DashHomeState extends State<DashHome> {
                                             onTap: () {
                                               cartProvider.addCartItem(
                                                 _gridItems[index],
-                                              );
-                                              print(
-                                                "Cart Items: ${cartProvider.cartItems}",
                                               );
                                             },
                                             child: Container(

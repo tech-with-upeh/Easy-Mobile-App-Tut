@@ -1,5 +1,8 @@
 import 'package:easyapp/appprovider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/ph.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -59,105 +62,117 @@ class _CartPageState extends State<CartPage> {
                 itemCount: cartItems.length,
                 itemBuilder: (context, index) {
                   final item = cartItems[index];
-                  return Slidable(
-                    key: ValueKey(item),
-                    endActionPane: ActionPane(
-                      extentRatio: 0.25,
-                      motion: const ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            cartProvider.removeCartItem(cartItems[0]);
-                          },
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(16),
-                            bottomRight: Radius.circular(16),
-                          ),
-                          icon: Icons.delete,
-                          label: 'Delete',
-                        ),
-                      ],
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: Colors.deepOrange.shade400,
                     ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white10,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 4,
-                            offset: Offset(0, 2),
+                    child: Slidable(
+                      key: ValueKey(item),
+                      endActionPane: ActionPane(
+                        extentRatio: 0.25,
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) {
+                              cartProvider.removeCartItem(cartItems[0]);
+                            },
+
+                            backgroundColor: Colors.deepOrange.shade400,
+                            foregroundColor: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(24),
+                              bottomRight: Radius.circular(24),
+                            ),
+                            icon: Icons.delete_outline_outlined,
                           ),
                         ],
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                height: 100,
-                                width: 100,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
-                                  child: Image.asset(
-                                    cartItems[index].imageUrl,
-                                    fit: BoxFit.fill,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: 120,
+                                  width: 120,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(16),
+                                    child: Image.asset(
+                                      cartItems[index].imageUrl,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    cartItems[index].name,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                SizedBox(width: 24),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      cartItems[index].name,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
+                                    Text(
+                                      cartItems[index].calories.toString() +
+                                          " Cal",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Text(
+                                      '\$${cartItems[index].price.toStringAsFixed(2)} / Kg',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    cartProvider.incrementCartItemCount();
+                                  },
+                                  icon: Iconify(Ph.plus_bold, size: 18),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(3, 12, 46, 1),
+
+                                    borderRadius: BorderRadius.circular(6),
                                   ),
-                                  Text(
-                                    cartItems[index].calories.toString() +
-                                        " Cal",
-                                    style: const TextStyle(
+                                  child: Text(
+                                    '${cartItems[index].count}',
+                                    style: GoogleFonts.lato(
                                       fontSize: 16,
-                                      color: Colors.grey,
+                                      color: Colors.white,
                                     ),
                                   ),
-                                  Text(
-                                    '\$${cartItems[index].price.toStringAsFixed(2)} / Kg',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  cartProvider.incrementCartItemCount();
-                                },
-                                icon: const Icon(Icons.add),
-                              ),
-                              Text(
-                                cartProvider.cartItemCount.toString(),
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  cartProvider.decrementCartItemCount();
-                                },
-                                icon: const Icon(Icons.remove),
-                              ),
-                            ],
-                          ),
-                        ],
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    cartProvider.decrementCartItemCount();
+                                  },
+                                  icon: Iconify(Ph.minus_bold, size: 18),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
